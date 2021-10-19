@@ -36,6 +36,7 @@
 /* --------------Important Step Below ------------ */
 // import the polygon class using the CommonJS require() function
 // See triangle.js for an example of how to import a file
+const { Polygon } = require('./polygon');
 
 /**
  * rectangle class
@@ -60,8 +61,12 @@ class Rectangle extends Polygon {
    * You'll need to use the height and width parameters to create
    * the array of 4 numbers
    */
+
   constructor(height, width) {
-    // write your code here
+    super([height, height, width, width]);
+    this.name = 'Rectangle';
+    this.height = height;
+    this.width = width;
   }
 
   /**
@@ -69,7 +74,7 @@ class Rectangle extends Polygon {
    * @returns {boolean} true if the height and width are both a number > 0
    */
   isValid() {
-    // write your code here
+    return this.height > 0 && this.width > 0;
   }
 
   /**
@@ -79,7 +84,10 @@ class Rectangle extends Polygon {
    * otherwise return 0
    */
   area() {
-    // write your code here
+    if (this.isValid()) {
+      return this.height * this.width;
+    }
+    return 0;
   }
 }
 
