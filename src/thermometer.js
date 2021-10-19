@@ -26,14 +26,16 @@
  *
  */
 class Thermometer {
-  // write your code here for the private class field called celsius
+  #celsius;
 
   /**
    * @constructor
    * @param {number} celsius
    */
   constructor(celsius) {
-    // write your code here
+    this.#celsius = celsius;
+    this.tempFahrenheit = this.#celsius * 1.8 + 32;
+    this.tempKelvin = this.#celsius + 273.15;
   }
 
   /*  -------- celsius -------------------*/
@@ -44,7 +46,7 @@ class Thermometer {
    * @description - returns the celsius temperature
    * */
   get celsius() {
-    // write your code here
+    return this.#celsius;
   }
 
   /**
@@ -54,7 +56,9 @@ class Thermometer {
    * @description - sets the celsius temperature
    */
   set celsius(tempCelsius) {
-    // write your code here
+    this.#celsius = tempCelsius;
+    this.tempFahrenheit = this.#celsius * 1.8 + 32;
+    this.tempKelvin = this.#celsius + 273.15;
   }
 
   /*  -------- kelvin -------------------*/
@@ -65,7 +69,7 @@ class Thermometer {
    * @description - returns the kelvin temperature
    */
   get kelvin() {
-    // write your code here
+    return this.tempKelvin;
   }
 
   /**
@@ -75,7 +79,9 @@ class Thermometer {
    * @description - sets the kelvin temperature
    */
   set kelvin(tempKelvin) {
-    // write your code here
+    this.tempKelvin = tempKelvin;
+    this.#celsius = this.tempKelvin - 273.15;
+    this.tempFahrenheit = this.tempKelvin * (9 / 5) - 459.67;
   }
 
   /*  -------- fahrenheit -------------------*/
@@ -86,7 +92,7 @@ class Thermometer {
    * @description - returns the fahrenheit temperature
    */
   get fahrenheit() {
-    // write your code here
+    return this.tempFahrenheit;
   }
 
   /**
@@ -96,7 +102,9 @@ class Thermometer {
    * @description - sets the fahrenheit temperature
    */
   set fahrenheit(tempFahrenheit) {
-    // write your code here
+    this.tempFahrenheit = tempFahrenheit;
+    this.#celsius = (this.tempFahrenheit - 32) / 1.8;
+    this.tempKelvin = this.#celsius + 273.15;
   }
 
   /**
@@ -114,7 +122,16 @@ class Thermometer {
    *
    */
   toString(unit) {
-    // write your code here
+    if (unit === 'C') {
+      return `${this.#celsius}°C`;
+    }
+    if (unit === 'F') {
+      return `${this.tempFahrenheit}°F`;
+    }
+    if (unit === 'K') {
+      return `${this.tempKelvin}K`;
+    }
+    return `${this.#celsius}°C`;
   }
 }
 
